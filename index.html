@@ -557,7 +557,42 @@
     }
     .reserve__contact-item { margin-bottom: 1rem; }
     .reserve__contact-item a:hover { color: var(--gold); }
-
+/* CTA Réservation (Google Form) */
+    .reserve__cta {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.25rem;
+    }
+    .reserve__cta-kicker {
+      font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex; align-items: center; gap: 0.8rem;
+    }
+    .reserve__cta-kicker::before, .reserve__cta-kicker::after {
+      content: ""; width: 24px; height: 1px; background: var(--gold);
+    }
+    .reserve__cta-title {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 400;
+      color: var(--ink); margin: 0;
+    }
+    .reserve__cta-desc {
+      font-size: 1.02rem; line-height: 1.75; color: var(--ink-soft);
+      max-width: 520px; margin: 0;
+    }
+    .reserve__cta-btn {
+      margin-top: 0.75rem;
+      padding: 1.1rem 2.4rem !important;
+      font-size: 0.85rem;
+    }
+    .reserve__cta-note {
+      font-size: 0.78rem; color: var(--ink-soft); opacity: 0.85;
+      margin: 0.5rem 0 0; line-height: 1.6;
+    }
+    .reserve__cta-note a { color: var(--gold); text-decoration: underline; }
     .form { display: grid; gap: 1.25rem; }
     .form__row {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
@@ -1071,102 +1106,25 @@ Les organisateurs sont très ouverts et disponibles pour rendre ce moment unique
           </div>
         </div>
       </div>
-
-      <form class="form reveal" id="reserveForm" action="mailto:ContactBrunchEvasion@gmail.com" method="post" enctype="text/plain">
-        <div class="form__row">
-          <div class="field">
-            <label for="nom">Nom complet</label>
-            <input type="text" id="nom" name="nom" required />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-        </div>
-
-        <div class="form__row">
-          <div class="field">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" />
-          </div>
-          <div class="field">
-            <label for="date">Date souhaitée</label>
-            <input type="date" id="date" name="date" />
-          </div>
-        </div>
-
-        <div class="form__row">
-          <div class="field">
-            <label for="personnes">Nombre de personnes</label>
-            <input type="number" id="personnes" name="personnes" min="2" max="40" value="2" />
-          </div>
-          <div class="field">
-            <label for="formule">Formule</label>
-            <select id="formule" name="formule">
-              <option value="classique-chic">Le Classique Chic</option>
-              <option value="vitalite">Le Vitalité</option>
-              <option value="indecis">Je ne sais pas encore</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form__row">
-          <div class="field">
-            <label for="occasion">Occasion</label>
-            <select id="occasion" name="occasion">
-              <option value="moment-a-deux">Moment à deux</option>
-              <option value="anniversaire">Anniversaire</option>
-              <option value="demande-mariage">Demande en mariage</option>
-              <option value="evjf">EVJF / EVG</option>
-              <option value="autre">Autre / Sur mesure</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="lieu">Lieu souhaité</label>
-            <select id="lieu" name="lieu">
-              <option value="plage">La Plage</option>
-              <option value="colline">La Colline</option>
-              <option value="surprise">J'ai un lieu en tête</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="message">Votre rêve, en quelques mots</label>
-          <textarea id="message" name="message" placeholder="Racontez-nous ce que vous imaginez : lieu, décoration spéciale, bouquet de fleurs, photographe, surprise…"></textarea>
-        </div>
-
-        <label class="form__cgv">
-          <input type="checkbox" id="acceptCgv" name="acceptCgv" required />
-          <span>J'ai lu et j'accepte les <a href="#" id="openCgv">Conditions Générales de Vente</a>.</span>
-        </label>
-
-        <button type="submit" class="btn btn--gold form__submit">Envoyer ma demande</button>
-
-        <p class="form__note">
-          Vos informations restent strictement confidentielles.
+<div class="reserve__cta reveal">
+        <div class="reserve__cta-kicker">Demande de réservation</div>
+        <h3 class="reserve__cta-title">Confiez-nous votre rêve.</h3>
+        <p class="reserve__cta-desc">
+          Quelques minutes pour nous raconter votre projet — date, lieu, formule, occasion.
+          Nous vous répondons sous <strong>48 heures</strong> avec une proposition personnalisée et un devis sur mesure.
         </p>
-
-        <div class="form__success" id="formSuccess">
-          Merci. Votre demande est bien arrivée, nous vous répondons sous 48h avec une proposition personnalisée.
-        </div>
-
-        <div class="form__alt">
-          <span class="form__alt-line"></span>
-          <span class="form__alt-label">ou</span>
-          <span class="form__alt-line"></span>
-        </div>
-        <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn btn--ghost">
-          Remplir notre formulaire détaillé
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-left:0.6rem; vertical-align:-2px;">
+        <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn btn--gold reserve__cta-btn">
+          Faire ma demande de réservation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-left:0.7rem; vertical-align:-3px;">
             <path d="M7 17L17 7M17 7H9M17 7V15"/>
           </svg>
         </a>
-        <p class="form__note" style="margin-top:0.75rem;">
-          Formulaire complémentaire Google Forms · s'ouvre dans un nouvel onglet
+        <p class="reserve__cta-note">
+          S'ouvre dans un nouvel onglet · En soumettant ce formulaire, vous acceptez nos
+          <a href="#" id="openCgv">Conditions Générales de Vente</a>.
         </p>
-      </form>
-    </div>
+      </div>
+     
   </section>
 
   <!-- ======================== FOOTER ======================== -->
@@ -1386,12 +1344,7 @@ Les organisateurs sont très ouverts et disponibles pour rendre ce moment unique
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
 
-    // Form success feedback
-    const form = document.getElementById('reserveForm');
-    const success = document.getElementById('formSuccess');
-    form.addEventListener('submit', () => {
-      setTimeout(() => success.classList.add('show'), 300);
-    });
+   
   </script>
 </body>
 </html>
