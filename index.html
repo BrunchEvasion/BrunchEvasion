@@ -401,7 +401,7 @@
     .supplements__list li:not(:last-child)::after {
       content: "·"; position: absolute; right: -1.4rem; color: var(--gold);
     }
-    /* Options & Services */
+   /* Options & Services */
     .options {
       margin-top: 3rem; padding: 3rem 2.5rem;
       background: var(--cream); border: 1px solid var(--line);
@@ -413,34 +413,39 @@
     .options__intro {
       text-align: center; font-style: italic; font-family: var(--serif);
       color: var(--ink-soft); margin-bottom: 2.5rem; font-size: 1.05rem;
+      max-width: 620px; margin-left: auto; margin-right: auto;
     }
     .options__grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 0;
+      gap: 0 2.5rem;
     }
-    @media (max-width: 700px) { .options__grid { grid-template-columns: 1fr; } }
+    @media (max-width: 800px) { .options__grid { grid-template-columns: 1fr; gap: 0; } }
     .option {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 0.5rem;
+      display: flex; flex-direction: column;
+      padding: 1.4rem 0;
       border-bottom: 1px solid var(--line);
+      gap: 0.5rem;
+    }
+    .option__header {
+      display: flex; justify-content: space-between; align-items: baseline;
       gap: 1rem;
     }
     .option__name {
-      font-size: 0.95rem; color: var(--ink); font-weight: 300;
+      font-size: 1rem; color: var(--ink); font-weight: 400;
     }
     .option__price {
       font-family: var(--serif); font-style: italic;
-      font-size: 1.1rem; color: var(--gold); white-space: nowrap;
+      font-size: 1.2rem; color: var(--gold); white-space: nowrap;
+    }
+    .option__desc {
+      font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65;
+      font-style: italic; font-family: var(--serif);
+      margin: 0;
     }
     .options__note {
       text-align: center; margin-top: 2rem;
       font-style: italic; font-family: var(--serif);
       color: var(--ink-soft); font-size: 1rem;
-    }
-    .formules-note {
-      text-align: center; margin-top: 3rem; max-width: 680px; margin-left: auto; margin-right: auto;
-      font-style: italic; font-family: var(--serif); font-size: 1.15rem;
-      color: var(--ink-soft);
     }
 
     /* ============================================================ POUR RÉSERVER (4 ÉTAPES) */
@@ -956,29 +961,51 @@
         <li>Banana bread</li>
       </ul>
     </div>
-    <div class="options reveal">
-      <h3 class="options__title">Les options & services</h3>
-      <p class="options__intro">Personnalisez votre expérience avec une touche d'exception.</p>
+   <div class="options reveal">
+      <h3 class="options__title">Nos options & suppléments</h3>
+      <p class="options__intro">Personnalisez votre expérience avec nos options sur mesure, disponibles en supplément à votre formule.</p>
       <div class="options__grid">
         <div class="option">
-          <span class="option__name">Décoration romantique</span>
-          <span class="option__price">+50 €</span>
+          <div class="option__header">
+            <span class="option__name">🌸 Bouquet de fleurs fraîches</span>
+            <span class="option__price">+35 €</span>
+          </div>
+          <p class="option__desc">Un bouquet soigneusement sélectionné pour sublimer votre table et marquer l'occasion.</p>
         </div>
         <div class="option">
-          <span class="option__name">Photographe </span>
-          <span class="option__price">+90 €</span>
+          <div class="option__header">
+            <span class="option__name">🕯️ Décoration romantique</span>
+            <span class="option__price">+50 €</span>
+          </div>
+          <p class="option__desc">Pétales de roses, bougies, guirlandes lumineuses… une mise en scène complète pour un cadre enchanteur.</p>
         </div>
         <div class="option">
-          <span class="option__name">Parasol & brumisateurs</span>
-          <span class="option__price">+15 €</span>
+          <div class="option__header">
+            <span class="option__name">📸 Photographe professionnel</span>
+            <span class="option__price">+90 €</span>
+          </div>
+          <p class="option__desc">Immortalisez chaque instant. Un photographe discret capture vos émotions pour des souvenirs inoubliables.</p>
         </div>
         <div class="option">
-          <span class="option__name">Bouquet de fleurs fraîches</span>
-          <span class="option__price">+35 €</span>
+          <div class="option__header">
+            <span class="option__name">☂️ Parasol & brumisateur</span>
+            <span class="option__price">+15 €</span>
+          </div>
+          <p class="option__desc">Profitez de votre moment en plein confort, même sous le soleil de la Côte d'Azur.</p>
         </div>
         <div class="option">
-          <span class="option__name">Mise en scène demande en mariage</span>
-          <span class="option__price">+140 €</span>
+          <div class="option__header">
+            <span class="option__name">🎸 Pack Musique</span>
+            <span class="option__price">+20 €</span>
+          </div>
+          <p class="option__desc">Une guitare acoustique et une enceinte pour créer une ambiance unique et mélodieuse.</p>
+        </div>
+        <div class="option">
+          <div class="option__header">
+            <span class="option__name">🎨 Pack Créatif</span>
+            <span class="option__price">+40 €</span>
+          </div>
+          <p class="option__desc">Repartez avec un souvenir unique — votre tableau. Profitez du matériel pour peindre ensemble votre moment.</p>
         </div>
       </div>
       <p class="options__note">D'autres envies ? Tout est possible sur devis personnalisé.</p>
