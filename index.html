@@ -381,45 +381,35 @@
       margin-top: 0.4rem;
     }
     .formule .btn { align-self: center; }
-    /* Pack Signature — Demande en Mariage */
+       /* Pack Signature — Demande en Mariage */
     .pack-signature {
-      margin-top: 3rem;
+      margin: 4rem auto 0;
+      max-width: 780px;
       padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
-      background: var(--ink);
-      color: var(--cream);
+      background: var(--cream-deep);
+      color: var(--ink);
       text-align: center;
-      position: relative;
       border: 1px solid var(--gold);
-      overflow: hidden;
-    }
-    .pack-signature::before {
-      content: "⚜";
-      position: absolute;
-      top: -30px; left: 50%;
-      transform: translateX(-50%);
-      font-size: 3rem; color: var(--gold);
-      background: var(--ink); padding: 0 1rem;
-      font-family: var(--serif);
     }
     .pack-signature__badge {
       display: inline-block;
       font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--gold-light);
+      color: var(--gold);
       padding: 0.4rem 1rem;
-      border-top: 1px solid rgba(212, 188, 134, 0.4);
-      border-bottom: 1px solid rgba(212, 188, 134, 0.4);
+      border-top: 1px solid rgba(184, 149, 85, 0.4);
+      border-bottom: 1px solid rgba(184, 149, 85, 0.4);
       margin-bottom: 1.75rem;
     }
     .pack-signature__title {
       font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 1rem;
     }
-    .pack-signature__title em { font-style: italic; color: var(--gold-light); }
+    .pack-signature__title em { font-style: italic; color: var(--gold); }
     .pack-signature__desc {
       font-family: var(--serif); font-style: italic;
       font-size: 1.15rem; line-height: 1.6;
-      color: rgba(250, 246, 239, 0.85);
+      color: var(--ink-soft);
       max-width: 620px; margin: 0 auto 2.5rem;
     }
     .pack-signature__includes {
@@ -429,7 +419,7 @@
       display: grid; gap: 0.75rem;
     }
     .pack-signature__includes li {
-      font-size: 0.98rem; color: rgba(250, 246, 239, 0.92);
+      font-size: 0.98rem; color: var(--ink-soft);
       padding-left: 1.75rem; position: relative;
       line-height: 1.6;
     }
@@ -439,29 +429,29 @@
     }
     .pack-signature__price {
       padding: 1.5rem 0;
-      border-top: 1px solid rgba(212, 188, 134, 0.3);
-      border-bottom: 1px solid rgba(212, 188, 134, 0.3);
+      border-top: 1px solid rgba(184, 149, 85, 0.3);
+      border-bottom: 1px solid rgba(184, 149, 85, 0.3);
       margin: 0 auto 2rem; max-width: 320px;
     }
     .pack-signature__price-label {
       display: block;
       font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold-light); margin-bottom: 0.5rem;
+      color: var(--gold); margin-bottom: 0.5rem;
     }
     .pack-signature__price-amount {
       font-family: var(--serif); font-style: italic;
-      font-size: 3rem; color: var(--cream); line-height: 1;
+      font-size: 3rem; color: var(--ink); line-height: 1;
     }
     .pack-signature__btn {
       background: var(--gold);
-      color: var(--ink);
+      color: var(--cream);
       border-color: var(--gold);
       padding: 1.1rem 2.4rem;
     }
     .pack-signature__btn:hover {
-      background: var(--cream);
-      border-color: var(--cream);
-      color: var(--ink);
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--cream);
     }
     .supplements {
       margin-top: 4rem; padding: 3rem 2.5rem;
@@ -1032,27 +1022,7 @@
         <a href="#reserver" class="btn btn--dark">Demander un devis</a>
       </article>
     </div>
-    <div class="pack-signature reveal">
-      <div class="pack-signature__badge">Notre package signature</div>
-      <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
-      <p class="pack-signature__desc">
-        Pour ce moment unique, une expérience clé en main pensée dans chaque détail —
-        de la mise en scène à l'instant suspendu où le « oui » retentit.
-      </p>
-      <ul class="pack-signature__includes">
-        <li>Formule brunch pour 2 (Classique Chic ou Vitalité)</li>
-        <li>Mise en scène florale sur mesure</li>
-        <li>Décor premium adaptable à votre univers</li>
-        <li>Mise en scène coordonnée et personnalisée en amont</li>
-      </ul>
-      <div class="pack-signature__price">
-        <span class="pack-signature__price-label">Package complet</span>
-        <span class="pack-signature__price-amount">490 €</span>
-      </div>
-      <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn pack-signature__btn">
-        Organiser ma demande en mariage
-      </a>
-    </div>
+    
     
     <div class="supplements reveal">
       <h3 class="supplements__title">Les suppléments</h3>
@@ -1113,11 +1083,32 @@
       <p class="options__note">D'autres envies ? Tout est possible sur devis personnalisé.</p>
     </div>
 
-    <p class="formules-note">
-      <strong>180 € pour deux personnes</strong>, formule de base. Au-delà de deux convives ou pour toute demande spécifique
+     <p class="formules-note" style="font-style: italic;">
+      <em><strong>180 € pour deux personnes</strong>, formule de base. Au-delà de deux convives ou pour toute demande spécifique
       (bouquet de fleurs sur mesure, décoration personnalisée, photographe, demande en mariage…),
-      nous établissons un <strong>devis personnalisé</strong> à votre image.
+      nous établissons un <strong>devis personnalisé</strong> à votre image.</em>
     </p>
+    <div class="pack-signature reveal">
+      <div class="pack-signature__badge">Notre package signature</div>
+      <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
+      <p class="pack-signature__desc">
+        Pour ce moment unique, une expérience clé en main pensée dans chaque détail —
+        de la mise en scène à l'instant suspendu où le « oui » retentit.
+      </p>
+      <ul class="pack-signature__includes">
+        <li>Formule brunch pour 2 (Classique Chic ou Vitalité)</li>
+        <li>Mise en scène florale sur mesure</li>
+        <li>Décor premium adaptable à votre univers</li>
+        <li>Mise en scène coordonnée et personnalisée en amont</li>
+      </ul>
+      <div class="pack-signature__price">
+        <span class="pack-signature__price-label">Package complet</span>
+        <span class="pack-signature__price-amount">490 €</span>
+      </div>
+      <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn pack-signature__btn">
+        Organiser ma demande en mariage
+      </a>
+    </div>
   </section>
 
   <!-- ======================== POUR RÉSERVER (4 ÉTAPES) ======================== -->
@@ -1182,7 +1173,32 @@
       <div class="manifesto__sign">— Brunch Évasion</div>
     </div>
   </section>
+ <!-- ======================== GALERIE ======================== -->
+<section class="section" id="galerie">
+  <div class="section__inner">
+      <div class="reveal">
+        <span class="section__label">Galerie</span>
+        <h2 class="section__title">Les <em>instants</em> qui restent.</h2>
+        <p class="section__lead">Quelques moments capturés lors de nos dernières expériences.</p>
+      </div>
 
+      <!-- PHOTOS GALERIE -->
+      <div class="galerie">
+        <div class="galerie__item g1 reveal">
+          <img src="./images/IMG_6340.jpg" alt="Pancakes dorés et vue mer floue" />
+        </div>
+        <div class="galerie__item g2 reveal">
+          <img src="./images/IMG_6230.JPG" alt="Vue plongeante du brunch dressé" />
+        </div>
+        <div class="galerie__item g3 reveal">
+          <img src="./images/IMG_6445.jpg" alt="Saumon, fruits frais et smoothies" />
+        </div>
+        <div class="galerie__item g4 reveal">
+          <img src="./images/IMG_6375.jpg" alt="Table dressée, fleurs sauvages, vue mer" />
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- ======================== AVIS GOOGLE ======================== -->
   <section class="section" id="avis">
     <div class="reveal">
@@ -1287,32 +1303,7 @@ Les organisateurs sont très ouverts et disponibles pour rendre ce moment unique
 
   </section>
 
-  <!-- ======================== GALERIE ======================== -->
-  <section class="section section--dark" id="galerie">
-    <div class="section__inner">
-      <div class="reveal">
-        <span class="section__label">Galerie</span>
-        <h2 class="section__title">Les <em>instants</em> qui restent.</h2>
-        <p class="section__lead">Quelques moments capturés lors de nos dernières expériences.</p>
-      </div>
-
-      <!-- PHOTOS GALERIE -->
-      <div class="galerie">
-        <div class="galerie__item g1 reveal">
-          <img src="./images/IMG_6340.jpg" alt="Pancakes dorés et vue mer floue" />
-        </div>
-        <div class="galerie__item g2 reveal">
-          <img src="./images/IMG_6230.JPG" alt="Vue plongeante du brunch dressé" />
-        </div>
-        <div class="galerie__item g3 reveal">
-          <img src="./images/IMG_6445.jpg" alt="Saumon, fruits frais et smoothies" />
-        </div>
-        <div class="galerie__item g4 reveal">
-          <img src="./images/IMG_6375.jpg" alt="Table dressée, fleurs sauvages, vue mer" />
-        </div>
-      </div>
-    </div>
-  </section>
+ 
 
   <!-- ======================== RÉSERVATION ======================== -->
   <section class="section" id="reserver">
