@@ -78,11 +78,12 @@
       padding: 0.7rem var(--pad);
       box-shadow: 0 1px 0 var(--line);
     }
-    .nav__brand {
+        .nav__brand {
       display: flex; align-items: center; gap: 0.7rem;
       font-family: var(--serif); font-size: 1.2rem;
       letter-spacing: 0.22em; text-transform: uppercase;
       color: #FFFFFF; transition: color 0.4s ease;
+      white-space: nowrap;
     }
     .nav.scrolled .nav__brand { color: var(--ink); }
     .nav__brand img {
@@ -91,12 +92,14 @@
     }
     .nav.scrolled .nav__brand img { filter: none; }
 
-    .nav__links {
+        .nav__links {
       display: flex; gap: 2rem;
       list-style: none; margin: 0; padding: 0;
-      font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: #FFFFFF; transition: color 0.4s ease;
+      white-space: nowrap;
     }
+    .nav__links a { white-space: nowrap; }
     .nav.scrolled .nav__links { color: var(--ink); }
     .nav__links a { position: relative; padding: 0.25rem 0; }
     .nav__links a::after {
@@ -106,11 +109,12 @@
     }
     .nav__links a:hover::after { width: 100%; }
 
-    .nav__cta {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+        .nav__cta {
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
       padding: 0.65rem 1.3rem;
       border: 1px solid rgba(255,255,255,0.6); color: #FFFFFF;
       transition: all 0.35s ease;
+      white-space: nowrap;
     }
     .nav__cta:hover { background: #FFFFFF; color: var(--ink); }
     .nav.scrolled .nav__cta { border-color: var(--ink); color: var(--ink); }
@@ -773,7 +777,7 @@
 
     .footer__brand {
       font-family: var(--serif); font-size: 1.25rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
+      letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--cream); margin-bottom: 1rem;
     }
     .footer__tag {
@@ -1092,7 +1096,7 @@
       <div class="pack-signature__badge">Notre package signature</div>
       <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
       <p class="pack-signature__desc">
-        Pour ce moment unique, une expérience clé en main pensée dans chaque détail —
+        Pour ce moment unique, une expérience clé en main pensée dans chaque détail
         de la mise en scène à l'instant suspendu où le « oui » retentit.
       </p>
       <ul class="pack-signature__includes">
