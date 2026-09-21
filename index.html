@@ -381,7 +381,88 @@
       margin-top: 0.4rem;
     }
     .formule .btn { align-self: center; }
-
+    /* Pack Signature — Demande en Mariage */
+    .pack-signature {
+      margin-top: 3rem;
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem);
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      position: relative;
+      border: 1px solid var(--gold);
+      overflow: hidden;
+    }
+    .pack-signature::before {
+      content: "⚜";
+      position: absolute;
+      top: -30px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem; color: var(--gold);
+      background: var(--ink); padding: 0 1rem;
+      font-family: var(--serif);
+    }
+    .pack-signature__badge {
+      display: inline-block;
+      font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold-light);
+      padding: 0.4rem 1rem;
+      border-top: 1px solid rgba(212, 188, 134, 0.4);
+      border-bottom: 1px solid rgba(212, 188, 134, 0.4);
+      margin-bottom: 1.75rem;
+    }
+    .pack-signature__title {
+      font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .pack-signature__title em { font-style: italic; color: var(--gold-light); }
+    .pack-signature__desc {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1.15rem; line-height: 1.6;
+      color: rgba(250, 246, 239, 0.85);
+      max-width: 620px; margin: 0 auto 2.5rem;
+    }
+    .pack-signature__includes {
+      list-style: none; padding: 0; margin: 0 auto 2.5rem;
+      max-width: 520px;
+      text-align: left;
+      display: grid; gap: 0.75rem;
+    }
+    .pack-signature__includes li {
+      font-size: 0.98rem; color: rgba(250, 246, 239, 0.92);
+      padding-left: 1.75rem; position: relative;
+      line-height: 1.6;
+    }
+    .pack-signature__includes li::before {
+      content: "✦"; position: absolute; left: 0; top: 0;
+      color: var(--gold); font-size: 0.9rem;
+    }
+    .pack-signature__price {
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(212, 188, 134, 0.3);
+      border-bottom: 1px solid rgba(212, 188, 134, 0.3);
+      margin: 0 auto 2rem; max-width: 320px;
+    }
+    .pack-signature__price-label {
+      display: block;
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 0.5rem;
+    }
+    .pack-signature__price-amount {
+      font-family: var(--serif); font-style: italic;
+      font-size: 3rem; color: var(--cream); line-height: 1;
+    }
+    .pack-signature__btn {
+      background: var(--gold);
+      color: var(--ink);
+      border-color: var(--gold);
+      padding: 1.1rem 2.4rem;
+    }
+    .pack-signature__btn:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--ink);
+    }
     .supplements {
       margin-top: 4rem; padding: 3rem 2.5rem;
       background: var(--cream); border: 1px solid var(--line);
@@ -951,7 +1032,28 @@
         <a href="#reserver" class="btn btn--dark">Demander un devis</a>
       </article>
     </div>
-
+    <div class="pack-signature reveal">
+      <div class="pack-signature__badge">Notre package signature</div>
+      <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
+      <p class="pack-signature__desc">
+        Pour ce moment unique, une expérience clé en main pensée dans chaque détail —
+        de la mise en scène à l'instant suspendu où le « oui » retentit.
+      </p>
+      <ul class="pack-signature__includes">
+        <li>Formule brunch pour 2 (Classique Chic ou Vitalité)</li>
+        <li>Mise en scène florale sur mesure</li>
+        <li>Décor premium adaptable à votre univers</li>
+        <li>Mise en scène coordonnée et personnalisée en amont</li>
+      </ul>
+      <div class="pack-signature__price">
+        <span class="pack-signature__price-label">Package complet</span>
+        <span class="pack-signature__price-amount">490 €</span>
+      </div>
+      <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn pack-signature__btn">
+        Organiser ma demande en mariage
+      </a>
+    </div>
+    
     <div class="supplements reveal">
       <h3 class="supplements__title">Les suppléments</h3>
       <ul class="supplements__list">
@@ -968,42 +1070,42 @@
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Bouquet de fleurs fraîches</span>
-            <span class="option__price">+35 €</span>
+            <span class="option__price">+40 €</span>
           </div>
           <p class="option__desc">Un bouquet soigneusement sélectionné pour sublimer votre table et marquer l'occasion.</p>
         </div>
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Décoration romantique</span>
-            <span class="option__price">+50 €</span>
+            <span class="option__price">+60 €</span>
           </div>
           <p class="option__desc">Pétales de roses, bougies, guirlandes lumineuses… une mise en scène complète pour un cadre enchanteur.</p>
         </div>
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Photographe professionnel</span>
-            <span class="option__price">+90 €</span>
+            <span class="option__price">+130 €</span>
           </div>
           <p class="option__desc">Immortalisez chaque instant. Un photographe discret capture vos émotions pour des souvenirs inoubliables.</p>
         </div>
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Parasol & brumisateur</span>
-            <span class="option__price">+15 €</span>
+            <span class="option__price">+25 €</span>
           </div>
           <p class="option__desc">Profitez de votre moment en plein confort, même sous le soleil de la Côte d'Azur.</p>
         </div>
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Pack Musique</span>
-            <span class="option__price">+20 €</span>
+            <span class="option__price">+50 €</span>
           </div>
           <p class="option__desc">Une guitare acoustique et une enceinte pour créer une ambiance unique et mélodieuse.</p>
         </div>
         <div class="option">
           <div class="option__header">
             <span class="option__name"> Pack Créatif</span>
-            <span class="option__price">+40 €</span>
+            <span class="option__price">+50 €</span>
           </div>
           <p class="option__desc">Repartez avec un souvenir unique, votre tableau. Profitez du matériel pour peindre ensemble votre moment.</p>
         </div>
