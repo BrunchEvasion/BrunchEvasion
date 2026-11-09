@@ -2249,222 +2249,124 @@
     <button class="cta-sticky__close" id="ctaStickyClose" aria-label="Fermer">×</button>
   </div>
 
-  <!-- ===== GSAP + ScrollTrigger : Scroll Cinématique ===== -->
+  <!-- ===== GSAP + ScrollTrigger : Scroll Cinématique (version safe) ===== -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script>
+    // Version "safe" : tous les éléments sont visibles par défaut (CSS ne les cache pas).
+    // GSAP ajoute juste du mouvement doux au moment où ils entrent dans le viewport.
     if (window.gsap && window.ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
 
-      // ===== HERO : texte qui disparaît en fade + scale au scroll =====
+      // ===== HERO : texte qui disparaît en fade + scale au scroll (scrub = lié au scroll) =====
       gsap.to('.hero__inner', {
-        opacity: 0,
-        y: -60,
-        scale: 0.95,
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.8
-        }
+        opacity: 0, y: -60, scale: 0.95,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
       });
 
-      // La vidéo hero : zoom lent progressif pendant qu'on scrolle
+      // Vidéo hero : zoom lent pendant le scroll
       gsap.to('.hero__video', {
         scale: 1.15,
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1
-        }
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
       });
 
       // Flèche "Découvrir" : disparaît dès qu'on scrolle
       gsap.to('.hero__scroll', {
-        opacity: 0,
-        y: 20,
-        scrollTrigger: {
-          trigger: '.hero',
-          start: 'top top',
-          end: '20% top',
-          scrub: 0.5
-        }
+        opacity: 0, y: 20,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: '20% top', scrub: 0.5 }
       });
 
-      // ===== SECTIONS : apparition fluide avec légère translation =====
-      const fadeSections = document.querySelectorAll('.section, .manifesto, .traiteur, .giftcards');
-      fadeSections.forEach((section) => {
-        gsap.from(section, {
-          opacity: 0,
-          y: 60,
-          duration: 1.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        });
-      });
-
-      // ===== PACK SIGNATURE : effet scale-in cinématique =====
-      const pack = document.querySelector('.pack-signature');
-      if (pack) {
-        gsap.from(pack, {
-          scale: 0.92,
-          opacity: 0,
-          duration: 1.4,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: pack,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
+      // Petite fonction utilitaire : animation d'entrée douce
+      // Elle ANIMATE DEPUIS une position décalée vers la position normale.
+      // Si le ScrollTrigger ne se déclenche pas, l'élément reste visible (fromTo avec fallback).
+      function animateIn(selector, opts) {
+        const els = document.querySelectorAll(selector);
+        els.forEach((el) => {
+          gsap.fromTo(el,
+            { y: opts.y || 30, opacity: 1 },  // opacity reste 1 pour sécurité
+            {
+              y: 0,
+              duration: opts.duration || 1,
+              ease: opts.ease || 'power2.out',
+              delay: opts.delay || 0,
+              scrollTrigger: {
+                trigger: el,
+                start: opts.start || 'top 90%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
         });
       }
 
-      // ===== FORMULES : cards qui arrivent de côté =====
-      const formules = document.querySelectorAll('.formule');
-      formules.forEach((f, i) => {
-        gsap.from(f, {
-          x: i === 0 ? -50 : 50,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: f,
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          }
-        });
-      });
-
-      // ===== GALERIE : parallax doux sur chaque image =====
-      const galerieImgs = document.querySelectorAll('.galerie__item img');
-      galerieImgs.forEach((img) => {
-        gsap.to(img, {
-          yPercent: -10,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: img.closest('.galerie__item'),
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      });
-
-      // ===== LIEUX : fond qui zoome au survol du scroll =====
-      const lieux = document.querySelectorAll('.lieu');
-      lieux.forEach((lieu) => {
+      // Lieux : léger zoom au scroll (pas de risque de masquer)
+      gsap.utils.toArray('.lieu').forEach((lieu) => {
         gsap.fromTo(lieu,
-          { scale: 1.08 },
+          { scale: 1.06 },
           {
-            scale: 1,
-            duration: 1.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: lieu,
-              start: 'top 85%',
-              toggleActions: 'play none none none'
-            }
+            scale: 1, duration: 1.4, ease: 'power2.out',
+            scrollTrigger: { trigger: lieu, start: 'top 85%', toggleActions: 'play none none none' }
           }
         );
       });
 
-      // ===== TRAITEUR EVENTS : apparition en cascade =====
-      gsap.from('.traiteur-event', {
-        opacity: 0,
-        y: 30,
-        stagger: 0.12,
-        duration: 0.9,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.traiteur__events',
-          start: 'top 82%',
-          toggleActions: 'play none none none'
-        }
+      // Formules cards : glissent latéralement (sans opacity:0)
+      const formules = document.querySelectorAll('.formule');
+      formules.forEach((f, i) => {
+        gsap.fromTo(f,
+          { x: i === 0 ? -40 : 40 },
+          {
+            x: 0, duration: 1.2, ease: 'power2.out',
+            scrollTrigger: { trigger: f, start: 'top 90%', toggleActions: 'play none none none' }
+          }
+        );
       });
 
-      // ===== OPTIONS : stagger reveal =====
-      gsap.from('.option', {
-        opacity: 0,
-        y: 20,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.options__grid',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+      // Pack signature : scale subtil
+      const pack = document.querySelector('.pack-signature');
+      if (pack) {
+        gsap.fromTo(pack,
+          { scale: 0.96 },
+          {
+            scale: 1, duration: 1.4, ease: 'power3.out',
+            scrollTrigger: { trigger: pack, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
+      }
+
+      // Galerie : parallax doux sur les images (sans opacity)
+      gsap.utils.toArray('.galerie__item img').forEach((img) => {
+        gsap.to(img, {
+          yPercent: -8, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.galerie__item'),
+            start: 'top bottom', end: 'bottom top', scrub: 1.2
+          }
+        });
       });
 
-      // ===== GIFT CARDS : la carte 3D arrive de la gauche en tournant =====
+      // Gift card : flotte depuis la gauche avec rotation 3D (safe : y seulement)
       const giftCard = document.querySelector('.giftcards__card');
       if (giftCard) {
-        gsap.from(giftCard, {
-          x: -80,
-          rotateY: -40,
-          opacity: 0,
-          duration: 1.6,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.giftcards',
-            start: 'top 75%',
-            toggleActions: 'play none none none'
+        gsap.fromTo(giftCard,
+          { x: -50 },
+          {
+            x: 0, duration: 1.4, ease: 'power3.out',
+            scrollTrigger: { trigger: '.giftcards', start: 'top 85%', toggleActions: 'play none none none' }
           }
-        });
+        );
       }
 
-      // ===== AVIS : stagger reveal des cartes =====
-      gsap.from('.review', {
-        opacity: 0,
-        y: 24,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.reviews-grid',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
+      // Entrées progressives pour les éléments répétés (steps, options, reviews, traiteur-events)
+      // Utilise animateIn qui garde opacity à 1 → aucun risque de masquage
+      animateIn('.step', { y: 24, start: 'top 90%' });
+      animateIn('.option', { y: 16, start: 'top 92%' });
+      animateIn('.review', { y: 20, start: 'top 90%' });
+      animateIn('.traiteur-event', { y: 20, start: 'top 90%' });
 
-      // ===== MANIFESTO : fade-in profond =====
-      const manifestoText = document.querySelector('.manifesto__text');
-      if (manifestoText) {
-        gsap.from([manifestoText, '.manifesto__mark', '.manifesto__sign'], {
-          opacity: 0,
-          y: 30,
-          stagger: 0.2,
-          duration: 1.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.manifesto',
-            start: 'top 70%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // ===== STEPS (4 étapes) : apparition progressive =====
-      gsap.from('.step', {
-        opacity: 0,
-        y: 30,
-        stagger: 0.15,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.steps',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
-      });
-
-      // Refresh ScrollTrigger après chargement complet des images/video
+      // Refresh ScrollTrigger après chargement des images/vidéo
       window.addEventListener('load', () => ScrollTrigger.refresh());
+      setTimeout(() => ScrollTrigger.refresh(), 1500);
     }
   </script>
 
