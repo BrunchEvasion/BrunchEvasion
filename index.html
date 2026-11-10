@@ -243,6 +243,12 @@
       .mobile-menu a { font-family: var(--serif); font-size: 1.8rem; color: var(--ink); }
     }
 
+    /* Mobile menu : caché par défaut sur desktop (évite qu'il s'affiche comme bloc de texte) */
+    .mobile-menu { display: none; }
+    @media (max-width: 960px) {
+      .mobile-menu { display: flex; }
+    }
+
     /* ============================================================ BUTTONS */
     .btn {
       display: inline-block; padding: 1rem 2.2rem;
