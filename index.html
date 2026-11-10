@@ -594,6 +594,41 @@
       background: var(--ink); border-color: var(--ink); color: var(--cream);
     }
 
+    /* ===== Mini-galerie DEMANDE EN MARIAGE à côté du pack ===== */
+    .pack-mariage-wrap {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr;
+      gap: 2.5rem; align-items: center;
+    }
+    @media (min-width: 900px) {
+      .pack-mariage-wrap { grid-template-columns: 1.3fr 1fr; gap: 3.5rem; }
+    }
+    .pack-mariage-photos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 0.6rem;
+      aspect-ratio: 1/1.1;
+      min-height: 420px;
+    }
+    .pack-mariage-photos__item {
+      overflow: hidden; position: relative;
+    }
+    .pack-mariage-photos__item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .pack-mariage-photos__item:hover img { transform: scale(1.06); }
+    .pack-mariage-photos__item:nth-child(1) { grid-row: span 2; }
+    .pack-mariage-photos__item:nth-child(2) { }
+    .pack-mariage-photos__item:nth-child(3) { }
+    /* Ajustement : le pack reste centré dans sa colonne */
+    @media (min-width: 900px) {
+      .pack-signature.pack-signature--with-photos {
+        margin: 0; max-width: none;
+      }
+    }
+
     /* ===== Séparateur "Ou nos formules" ===== */
     .formules-separator {
       display: flex; align-items: center; gap: 1.5rem;
@@ -910,8 +945,10 @@
       margin-top: 1.5rem;
     }
     /* Galerie photos des prestations traiteur (après le CTA) */
+    /* ===== CAROUSEL DÉROULANT TRAITEUR (scroll-snap natif) ===== */
     .traiteur-gallery {
       margin-top: 4rem;
+      position: relative;
     }
     .traiteur-gallery__intro {
       font-family: var(--serif); font-style: italic;
@@ -919,20 +956,67 @@
       margin-bottom: 2rem;
     }
     .traiteur-gallery__intro em { color: var(--gold); }
-    .traiteur-gallery__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.5rem;
+    .traiteur-carousel {
+      position: relative;
+      /* Dépasse légèrement du container pour un rendu full-bleed élégant */
+      margin: 0 calc(-1 * var(--pad));
     }
-    @media (max-width: 800px) { .traiteur-gallery__grid { grid-template-columns: repeat(2, 1fr); } }
-    .traiteur-gallery__item {
-      aspect-ratio: 3/4; overflow: hidden;
+    .traiteur-carousel__track {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 0 var(--pad) 1rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    .traiteur-gallery__item img {
+    .traiteur-carousel__track::-webkit-scrollbar { display: none; }
+    .traiteur-carousel__item {
+      flex: 0 0 auto;
+      width: clamp(220px, 28vw, 340px);
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      scroll-snap-align: center;
+      position: relative;
+      background: var(--cream-deep);
+    }
+    .traiteur-carousel__item img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 1s ease;
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .traiteur-gallery__item:hover img { transform: scale(1.05); }
+    .traiteur-carousel__item:hover img { transform: scale(1.06); }
+    /* Boutons de navigation */
+    .traiteur-carousel__nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px;
+      background: rgba(250, 246, 239, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+      font-family: var(--serif); font-size: 1.4rem; color: var(--ink);
+    }
+    .traiteur-carousel__nav:hover {
+      background: var(--gold); color: var(--cream); border-color: var(--gold);
+    }
+    .traiteur-carousel__nav--prev { left: 0.5rem; }
+    .traiteur-carousel__nav--next { right: 0.5rem; }
+    @media (max-width: 600px) {
+      .traiteur-carousel__nav { display: none; }
+    }
+    .traiteur-carousel__counter {
+      position: absolute; bottom: -2.5rem; left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .traiteur-carousel__counter em {
+      font-family: var(--serif); font-style: italic;
+      color: var(--gold); margin: 0 0.3rem;
+    }
 
     /* ============================================================ MANIFESTO */
     .manifesto {
@@ -973,11 +1057,14 @@
     .g4 { grid-column: span 4; grid-row: span 2; }
     .g5 { grid-column: span 4; grid-row: span 2; }
     .g6 { grid-column: span 4; grid-row: span 2; }
+    .g7 { grid-column: span 6; grid-row: span 2; }
+    .g8 { grid-column: span 6; grid-row: span 2; }
 
     @media (max-width: 720px) {
       .g1 { grid-column: span 12; grid-row: span 2; }
       .g2, .g3 { grid-column: span 6; grid-row: span 2; }
       .g4, .g5, .g6 { grid-column: span 12; grid-row: span 2; }
+      .g7, .g8 { grid-column: span 12; grid-row: span 2; }
     }
 
     /* ============================================================ RÉSERVATION FORM */
@@ -1446,27 +1533,40 @@
       </p>
     </div>
 
-    <!-- 1. PACK SIGNATURE (DEMANDE EN MARIAGE) — en premier (ancre haut-de-gamme) -->
-    <div class="pack-signature reveal">
-      <div class="pack-signature__badge">Notre package signature</div>
-      <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
-      <p class="pack-signature__desc">
-        Pour ce moment unique, une expérience clé en main pensée dans chaque détail,
-        de la mise en scène à l'instant suspendu où le « oui » retentit.
-      </p>
-      <ul class="pack-signature__includes">
-        <li>Formule brunch pour 2 (Classique Chic ou Vitalité)</li>
-        <li>Mise en scène florale sur mesure</li>
-        <li>Décor premium adaptable à votre univers</li>
-        <li>Mise en scène coordonnée et personnalisée en amont</li>
-      </ul>
-      <div class="pack-signature__price">
-        <span class="pack-signature__price-label">Package complet</span>
-        <span class="pack-signature__price-amount">490 €</span>
+    <!-- 1. PACK SIGNATURE (DEMANDE EN MARIAGE) — avec 3 photos en mosaïque à côté -->
+    <div class="pack-mariage-wrap reveal">
+      <div class="pack-signature pack-signature--with-photos">
+        <div class="pack-signature__badge">Notre package signature</div>
+        <h3 class="pack-signature__title">Le Pack <em>Demande en Mariage</em></h3>
+        <p class="pack-signature__desc">
+          Pour ce moment unique, une expérience clé en main pensée dans chaque détail,
+          de la mise en scène à l'instant suspendu où le « oui » retentit.
+        </p>
+        <ul class="pack-signature__includes">
+          <li>Formule brunch pour 2 (Classique Chic ou Vitalité)</li>
+          <li>Mise en scène florale sur mesure</li>
+          <li>Décor premium adaptable à votre univers</li>
+          <li>Mise en scène coordonnée et personnalisée en amont</li>
+        </ul>
+        <div class="pack-signature__price">
+          <span class="pack-signature__price-label">Package complet</span>
+          <span class="pack-signature__price-amount">490 €</span>
+        </div>
+        <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn pack-signature__btn">
+          Organiser ma demande en mariage
+        </a>
       </div>
-      <a href="https://forms.gle/rEZVp6qxaRvjNNyF7" target="_blank" rel="noopener" class="btn pack-signature__btn">
-        Organiser ma demande en mariage
-      </a>
+      <div class="pack-mariage-photos">
+        <div class="pack-mariage-photos__item">
+          <img src="./images/mariage-01.jpg" alt="Mise en scène demande en mariage Côte d'Azur" loading="lazy" decoding="async" />
+        </div>
+        <div class="pack-mariage-photos__item">
+          <img src="./images/mariage-02.jpg" alt="Décoration florale demande en mariage" loading="lazy" decoding="async" />
+        </div>
+        <div class="pack-mariage-photos__item">
+          <img src="./images/mariage-03.jpg" alt="Instant du oui sur la Côte d'Azur" loading="lazy" decoding="async" />
+        </div>
+      </div>
     </div>
 
     <!-- Séparateur élégant -->
@@ -1666,23 +1766,31 @@
         le format souhaité et le lieu.
       </p>
 
-      <!-- Galerie photos des prestations traiteur -->
+      <!-- Carousel déroulant — 13 photos de prestations traiteur -->
       <div class="traiteur-gallery reveal">
         <p class="traiteur-gallery__intro">
           Un aperçu de ce que <em>nous savons faire</em>.
         </p>
-        <div class="traiteur-gallery__grid">
-          <div class="traiteur-gallery__item">
-            <img src="https://brunchevasion.github.io/BrunchEvasion/images/IMG_6340.jpg" alt="Prestation traiteur Brunch Évasion, Côte d'Azur" loading="lazy" decoding="async" />
+        <div class="traiteur-carousel">
+          <button class="traiteur-carousel__nav traiteur-carousel__nav--prev" id="traiteurPrev" aria-label="Précédent">‹</button>
+          <button class="traiteur-carousel__nav traiteur-carousel__nav--next" id="traiteurNext" aria-label="Suivant">›</button>
+          <div class="traiteur-carousel__track" id="traiteurTrack">
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-01.jpg" alt="Buffet traiteur Côte d'Azur" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-02.jpg" alt="Prestation traiteur événementielle" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-03.jpg" alt="Buffet événement privé" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-04.jpg" alt="Buffet traiteur raffiné" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-05.jpg" alt="Prestation traiteur sur mesure" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-06.jpg" alt="Buffet d'anniversaire traiteur" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-07.jpg" alt="Buffet événement mariage" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-08.jpg" alt="Prestation traiteur entreprise" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-09.jpg" alt="Buffet traiteur chic" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-10.jpg" alt="Dressage événementiel Brunch Évasion" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-11.jpg" alt="Buffet traiteur gourmand" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-12.jpg" alt="Prestation traiteur privée Côte d'Azur" loading="lazy" decoding="async" /></div>
+            <div class="traiteur-carousel__item"><img src="./images/traiteur-13.jpg" alt="Buffet traiteur Brunch Évasion" loading="lazy" decoding="async" /></div>
           </div>
-          <div class="traiteur-gallery__item">
-            <img src="https://brunchevasion.github.io/BrunchEvasion/images/IMG_6354.jpg" alt="Buffet événementiel Brunch Évasion" loading="lazy" decoding="async" />
-          </div>
-          <div class="traiteur-gallery__item">
-            <img src="https://brunchevasion.github.io/BrunchEvasion/images/IMG_6445.jpg" alt="Prestation privée Brunch Évasion" loading="lazy" decoding="async" />
-          </div>
-          <div class="traiteur-gallery__item">
-            <img src="https://brunchevasion.github.io/BrunchEvasion/images/IMG_6375.jpg" alt="Table traiteur dressée Côte d'Azur" loading="lazy" decoding="async" />
+          <div class="traiteur-carousel__counter">
+            <span id="traiteurCurrent">1</span><em>/</em><span>13</span>
           </div>
         </div>
       </div>
@@ -1885,6 +1993,12 @@
         </div>
         <div class="galerie__item g6 reveal">
           <img src="https://brunchevasion.github.io/BrunchEvasion/images/IMG_2129 2.jpg" alt="Lumière dorée sur les collines de l'arrière-pays" loading="lazy" decoding="async" />
+        </div>
+        <div class="galerie__item g7 reveal">
+          <img src="./images/brunch-nomade-01.jpg" alt="Brunch nomade sur la Côte d'Azur" loading="lazy" decoding="async" />
+        </div>
+        <div class="galerie__item g8 reveal">
+          <img src="./images/brunch-nomade-02.jpg" alt="Expérience brunch nomade en pleine nature" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -2201,6 +2315,38 @@
       m.addEventListener('click', (e) => { if (e.target === m) closeAllModals(); });
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
+
+    // ===== Carousel traiteur (scroll-snap + boutons) =====
+    const tTrack = document.getElementById('traiteurTrack');
+    const tPrev = document.getElementById('traiteurPrev');
+    const tNext = document.getElementById('traiteurNext');
+    const tCurrent = document.getElementById('traiteurCurrent');
+    if (tTrack && tPrev && tNext) {
+      const getStep = () => {
+        const item = tTrack.querySelector('.traiteur-carousel__item');
+        if (!item) return 300;
+        const style = getComputedStyle(tTrack);
+        const gap = parseFloat(style.gap || 0);
+        return item.offsetWidth + gap;
+      };
+      tNext.addEventListener('click', () => {
+        tTrack.scrollBy({ left: getStep(), behavior: 'smooth' });
+      });
+      tPrev.addEventListener('click', () => {
+        tTrack.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      });
+      // Met à jour le compteur selon la position
+      const updateCounter = () => {
+        const step = getStep();
+        const idx = Math.round(tTrack.scrollLeft / step) + 1;
+        const total = tTrack.children.length;
+        if (tCurrent) tCurrent.textContent = Math.max(1, Math.min(idx, total));
+      };
+      tTrack.addEventListener('scroll', () => {
+        clearTimeout(tTrack._scrollTimer);
+        tTrack._scrollTimer = setTimeout(updateCounter, 80);
+      }, { passive: true });
+    }
 
     // ===== Barre CTA sticky : apparaît après avoir scrollé au-delà du hero =====
     const ctaSticky = document.getElementById('ctaSticky');
