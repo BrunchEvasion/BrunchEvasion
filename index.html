@@ -594,38 +594,54 @@
       background: var(--ink); border-color: var(--ink); color: var(--cream);
     }
 
-    /* ===== Mini-galerie DEMANDE EN MARIAGE à côté du pack ===== */
+    /* ===== Pack Demande en Mariage : photo éditoriale pleine hauteur ===== */
     .pack-mariage-wrap {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr;
-      gap: 2.5rem; align-items: center;
+      gap: 2.5rem; align-items: stretch;
     }
     @media (min-width: 900px) {
-      .pack-mariage-wrap { grid-template-columns: 1.3fr 1fr; gap: 3.5rem; }
+      .pack-mariage-wrap {
+        grid-template-columns: 1.15fr 1fr;
+        gap: 3.5rem;
+        align-items: stretch;
+      }
     }
-    .pack-mariage-photos {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 0.6rem;
-      aspect-ratio: 1/1.1;
-      min-height: 420px;
+    .pack-mariage-hero {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
     }
-    .pack-mariage-photos__item {
-      overflow: hidden; position: relative;
+    .pack-mariage-hero::before {
+      content: ""; position: absolute;
+      top: 0; bottom: 0; left: -14px;
+      width: 1px; background: var(--gold);
+      z-index: 2; opacity: 0.55;
     }
-    .pack-mariage-photos__item img {
+    .pack-mariage-hero img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      object-position: center 30%;
+      transition: transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+      filter: saturate(0.98);
     }
-    .pack-mariage-photos__item:hover img { transform: scale(1.06); }
-    .pack-mariage-photos__item:nth-child(1) { grid-row: span 2; }
-    .pack-mariage-photos__item:nth-child(2) { }
-    .pack-mariage-photos__item:nth-child(3) { }
-    /* Ajustement : le pack reste centré dans sa colonne */
+    .pack-mariage-hero:hover img { transform: scale(1.04); }
+    /* Caption en bas de l'image, discret éditorial */
+    .pack-mariage-hero__caption {
+      position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+      z-index: 2;
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--cream);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .pack-mariage-hero__caption::before {
+      content: ""; width: 24px; height: 1px; background: var(--gold-light);
+    }
     @media (min-width: 900px) {
       .pack-signature.pack-signature--with-photos {
-        margin: 0; max-width: none;
+        margin: 0; max-width: none; height: 100%;
+        display: flex; flex-direction: column; justify-content: center;
       }
     }
 
@@ -1057,8 +1073,10 @@
     .g4 { grid-column: span 4; grid-row: span 2; }
     .g5 { grid-column: span 4; grid-row: span 2; }
     .g6 { grid-column: span 4; grid-row: span 2; }
-    .g7 { grid-column: span 6; grid-row: span 2; }
-    .g8 { grid-column: span 6; grid-row: span 2; }
+    /* Photos brunch nomade en format portrait : plus hautes + cadrage haut */
+    .g7 { grid-column: span 6; grid-row: span 4; }
+    .g8 { grid-column: span 6; grid-row: span 4; }
+    .g7 img, .g8 img { object-position: center 25%; }
 
     @media (max-width: 720px) {
       .g1 { grid-column: span 12; grid-row: span 2; }
@@ -1556,16 +1574,9 @@
           Organiser ma demande en mariage
         </a>
       </div>
-      <div class="pack-mariage-photos">
-        <div class="pack-mariage-photos__item">
-          <img src="./images/mariage-01.jpg" alt="Mise en scène demande en mariage Côte d'Azur" loading="lazy" decoding="async" />
-        </div>
-        <div class="pack-mariage-photos__item">
-          <img src="./images/mariage-02.jpg" alt="Décoration florale demande en mariage" loading="lazy" decoding="async" />
-        </div>
-        <div class="pack-mariage-photos__item">
-          <img src="./images/mariage-03.jpg" alt="Instant du oui sur la Côte d'Azur" loading="lazy" decoding="async" />
-        </div>
+      <div class="pack-mariage-hero">
+        <img src="./images/mariage-01.jpg" alt="Demande en mariage Brunch Évasion, Côte d'Azur" loading="lazy" decoding="async" />
+        <div class="pack-mariage-hero__caption">L'instant où le « oui » retentit</div>
       </div>
     </div>
 
