@@ -152,7 +152,9 @@
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       padding: 1rem var(--pad);
+      padding-top: max(1rem, env(safe-area-inset-top));
       display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
       background: transparent;
       transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease;
     }
@@ -220,14 +222,14 @@
     .lang-switch__btn.active { opacity: 1; font-weight: 500; }
     .lang-switch__btn:hover { opacity: 1; }
     .lang-switch__sep { opacity: 0.4; }
-    @media (max-width: 960px) {
-      .nav__actions { display: none; }
-    }
     .nav__burger { display: none; }
 
     @media (max-width: 960px) {
       .nav__links { display: none; }
       .nav__cta { display: none; }
+      /* Garde seulement le sélecteur FR/EN visible dans la barre mobile */
+      .nav__actions { gap: 0.8rem; }
+      .nav__actions .lang-switch { font-size: 0.78rem; letter-spacing: 0.18em; }
       .nav__burger {
         display: block; background: none; border: none; cursor: pointer;
         padding: 0.5rem; color: #FFFFFF; transition: color 0.4s ease;
@@ -252,6 +254,14 @@
         margin-top: 1.5rem;
       }
       .mobile-menu .lang-switch__btn { color: var(--ink); font-size: inherit; }
+
+      /* Compacte la nav mobile pour éviter le débordement en haut d'écran */
+      .nav { padding: 0.65rem 1.1rem; padding-top: max(0.65rem, env(safe-area-inset-top)); }
+      .nav__brand { font-size: 0.95rem; letter-spacing: 0.18em; gap: 0.5rem; }
+      .nav__brand img { height: 32px; }
+    }
+    @media (max-width: 420px) {
+      .nav__brand span { display: none; }
     }
 
     /* Mobile menu : caché par défaut sur desktop (évite qu'il s'affiche comme bloc de texte) */
