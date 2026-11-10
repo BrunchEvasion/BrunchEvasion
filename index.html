@@ -130,13 +130,15 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
     body {
       margin: 0; font-family: var(--sans); font-weight: 300;
       color: var(--ink); background: var(--cream); line-height: 1.7;
       letter-spacing: 0.01em;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      max-width: 100vw;
     }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
@@ -244,6 +246,12 @@
       }
       .mobile-menu.open { opacity: 1; pointer-events: auto; }
       .mobile-menu a { font-family: var(--serif); font-size: 1.8rem; color: var(--ink); }
+      .mobile-menu .lang-switch {
+        color: var(--ink);
+        font-size: 0.9rem; letter-spacing: 0.2em;
+        margin-top: 1.5rem;
+      }
+      .mobile-menu .lang-switch__btn { color: var(--ink); font-size: inherit; }
     }
 
     /* Mobile menu : caché par défaut sur desktop (évite qu'il s'affiche comme bloc de texte) */
@@ -1478,6 +1486,11 @@
     <a href="#offrir" data-close>Offrir</a>
     <a href="#avis" data-close>Avis</a>
     <a href="#reserver" data-close>Demande de devis</a>
+    <div class="lang-switch" id="langSwitchMobile" aria-label="Language">
+      <button class="lang-switch__btn active" data-lang="fr">FR</button>
+      <span class="lang-switch__sep">·</span>
+      <button class="lang-switch__btn" data-lang="en">EN</button>
+    </div>
   </div>
 
   <!-- ======================== HERO ======================== -->
