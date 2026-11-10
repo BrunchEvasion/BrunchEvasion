@@ -910,7 +910,7 @@
 
     /* ============================================================ TRAITEUR ÉVÉNEMENTIEL */
     .traiteur {
-      background: var(--cream);
+      background: var(--cream-deep);
       padding: clamp(4rem, 8vw, 6rem) var(--pad);
     }
     .traiteur__inner {
@@ -1716,48 +1716,7 @@
     </p>
   </section>
 
-  <!-- ======================== POUR RÉSERVER (4 ÉTAPES) ======================== -->
-  <section class="section section--dark" id="reserver-comment">
-    <div class="section__inner">
-      <div class="reveal" style="text-align:center; max-width:780px; margin:0 auto;">
-        <span class="section__label" style="margin-left:auto; margin-right:auto;">Pour Réserver</span>
-        <h2 class="section__title" style="margin-left:auto; margin-right:auto;">Quatre étapes,<br/>un <em>moment inoubliable</em>.</h2>
-      </div>
-
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step__title">Le formulaire</div>
-          <p class="step__desc">
-            Remplissez le formulaire de réservation et partagez-nous vos souhaits
-            pour créer ensemble votre expérience.
-          </p>
-        </div>
-        <div class="step reveal">
-          <div class="step__title">Le devis</div>
-          <p class="step__desc">
-            Envoi du devis personnalisé sous 48h, suivi d'une confirmation téléphonique
-            pour affiner les derniers détails.
-          </p>
-        </div>
-        <div class="step reveal">
-          <div class="step__title">L'acompte</div>
-          <p class="step__desc">
-            Versement d'un acompte de 30 % pour valider la réservation.
-            L'équipe Brunch Évasion prépare avec soin votre moment privilégié.
-          </p>
-        </div>
-        <div class="step reveal">
-          <div class="step__title">Le jour J</div>
-          <p class="step__desc">
-            Vous arrivez sur le lieu préparé pour vous. La table est dressée,
-            l'instant n'attend que vous.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== TRAITEUR ÉVÉNEMENTIEL ======================== -->
+  <!-- ======================== TRAITEUR ÉVÉNEMENTIEL (déplacé AVANT Pour Réserver) ======================== -->
   <section class="traiteur" id="traiteur">
     <div class="traiteur__inner">
       <div class="reveal">
@@ -1823,6 +1782,47 @@
           <div class="traiteur-carousel__counter">
             <span id="traiteurCurrent">1</span><em>/</em><span>13</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== POUR RÉSERVER (4 ÉTAPES) ======================== -->
+  <section class="section" id="reserver-comment">
+    <div class="section__inner">
+      <div class="reveal" style="text-align:center; max-width:780px; margin:0 auto;">
+        <span class="section__label" style="margin-left:auto; margin-right:auto;">Pour Réserver</span>
+        <h2 class="section__title" style="margin-left:auto; margin-right:auto;">Quatre étapes,<br/>un <em>moment inoubliable</em>.</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step__title">Le formulaire</div>
+          <p class="step__desc">
+            Remplissez le formulaire de réservation et partagez-nous vos souhaits
+            pour créer ensemble votre expérience.
+          </p>
+        </div>
+        <div class="step reveal">
+          <div class="step__title">Le devis</div>
+          <p class="step__desc">
+            Envoi du devis personnalisé sous 48h, suivi d'une confirmation téléphonique
+            pour affiner les derniers détails.
+          </p>
+        </div>
+        <div class="step reveal">
+          <div class="step__title">L'acompte</div>
+          <p class="step__desc">
+            Versement d'un acompte de 30 % pour valider la réservation.
+            L'équipe Brunch Évasion prépare avec soin votre moment privilégié.
+          </p>
+        </div>
+        <div class="step reveal">
+          <div class="step__title">Le jour J</div>
+          <p class="step__desc">
+            Vous arrivez sur le lieu préparé pour vous. La table est dressée,
+            l'instant n'attend que vous.
+          </p>
         </div>
       </div>
     </div>
